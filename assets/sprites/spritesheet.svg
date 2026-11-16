@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 256" width="512" height="256" shape-rendering="crispEdges">
+  <rect width="512" height="256" fill="#1E293B"/>
+  
+  <!-- Grid Labels -->
+  <text x="16" y="24" fill="#FBBF24" font-family="monospace" font-size="14" font-weight="bold">SUPER ADVENTURE WORLD - SPRITE ASSETS</text>
+  
+  <!-- Hero Sprite (Pip) -->
+  <g transform="translate(20, 45) scale(2.5)">
+    <!-- Red Cap -->
+    <rect x="5" y="0" width="6" height="1" fill="#E52521"/>
+    <rect x="4" y="1" width="9" height="1" fill="#E52521"/>
+    <!-- Face / Eyes -->
+    <rect x="4" y="2" width="3" height="1" fill="#663300"/>
+    <rect x="7" y="2" width="3" height="1" fill="#FFCCA3"/>
+    <rect x="10" y="2" width="1" height="1" fill="#111111"/>
+    <rect x="3" y="3" width="7" height="1" fill="#FFCCA3"/>
+    <rect x="10" y="3" width="2" height="1" fill="#111111"/>
+    <!-- Mustache -->
+    <rect x="4" y="4" width="4" height="1" fill="#663300"/>
+    <!-- Shirt / Overalls -->
+    <rect x="4" y="7" width="2" height="3" fill="#E52521"/>
+    <rect x="6" y="7" width="1" height="3" fill="#002699"/>
+    <rect x="7" y="7" width="4" height="3" fill="#E52521"/>
+    <rect x="4" y="10" width="8" height="2" fill="#002699"/>
+    <rect x="7" y="10" width="2" height="1" fill="#FFD700"/>
+    <!-- Boots -->
+    <rect x="4" y="14" width="3" height="2" fill="#1A0D00"/>
+    <rect x="8" y="14" width="3" height="2" fill="#1A0D00"/>
+  </g>
+  <text x="35" y="105" fill="#E2E8F0" font-family="monospace" font-size="11">HERO (PIP)</text>
+
+  <!-- Sporey Mushroom Enemy -->
+  <g transform="translate(130, 45) scale(2.5)">
+    <!-- Cap -->
+    <rect x="4" y="0" width="8" height="2" fill="#CC2200"/>
+    <rect x="2" y="2" width="12" height="4" fill="#CC2200"/>
+    <!-- White spots -->
+    <rect x="4" y="1" width="2" height="2" fill="#FFFFFF"/>
+    <rect x="10" y="2" width="2" height="2" fill="#FFFFFF"/>
+    <!-- Stem & Eyes -->
+    <rect x="4" y="6" width="8" height="6" fill="#FAD5A5"/>
+    <rect x="5" y="7" width="1" height="3" fill="#111111"/>
+    <rect x="10" y="7" width="1" height="3" fill="#111111"/>
+    <!-- Feet -->
+    <rect x="2" y="12" width="4" height="3" fill="#5A3214"/>
+    <rect x="10" y="12" width="4" height="3" fill="#5A3214"/>
+  </g>
+  <text x="135" y="105" fill="#E2E8F0" font-family="monospace" font-size="11">SPOREY</text>
+
+  <!-- Shelly Turtle Enemy -->
+  <g transform="translate(230, 45) scale(2.5)">
+    <!-- Shell -->
+    <rect x="4" y="4" width="8" height="7" fill="#22AA22"/>
+    <rect x="3" y="5" width="10" height="5" fill="#22AA22"/>
+    <rect x="6" y="6" width="2" height="2" fill="#FFCC00"/>
+    <!-- Head -->
+    <rect x="11" y="1" width="4" height="4" fill="#FFCC00"/>
+    <rect x="13" y="2" width="1" height="1" fill="#111111"/>
+    <!-- Feet -->
+    <rect x="3" y="12" width="3" height="2" fill="#FF9900"/>
+    <rect x="9" y="12" width="3" height="2" fill="#FF9900"/>
+  </g>
+  <text x="240" y="105" fill="#E2E8F0" font-family="monospace" font-size="11">SHELLY</text>
+
+  <!-- Flappy Winged Enemy -->
+  <g transform="translate(340, 45) scale(2.5)">
+    <!-- Body -->
+    <rect x="6" y="4" width="4" height="7" fill="#7E22CE"/>
+    <rect x="7" y="5" width="1" height="2" fill="#FFFFFF"/>
+    <!-- Wings -->
+    <rect x="1" y="2" width="5" height="4" fill="#38BDF8"/>
+    <rect x="10" y="2" width="5" height="4" fill="#38BDF8"/>
+    <!-- Feet -->
+    <rect x="6" y="11" width="4" height="2" fill="#FACC15"/>
+  </g>
+  <text x="350" y="105" fill="#E2E8F0" font-family="monospace" font-size="11">FLAPPY</text>
+
+  <!-- Blocks and Collectibles -->
+  <g transform="translate(20, 130) scale(2.2)">
+    <!-- Question Block -->
+    <rect x="0" y="0" width="16" height="16" fill="#F59E0B"/>
+    <rect x="1" y="1" width="14" height="14" fill="#FBBF24"/>
+    <text x="8" y="12" fill="#FFFFFF" font-family="monospace" font-size="11" font-weight="bold" text-anchor="middle">?</text>
+    
+    <!-- Brick Block -->
+    <g transform="translate(22, 0)">
+      <rect x="0" y="0" width="16" height="16" fill="#3F1A08"/>
+      <rect x="1" y="1" width="6" height="6" fill="#B45309"/>
+      <rect x="8" y="1" width="7" height="6" fill="#B45309"/>
+      <rect x="1" y="8" width="14" height="7" fill="#B45309"/>
+    </g>
+
+    <!-- Coin -->
+    <g transform="translate(46, 0)">
+      <circle cx="8" cy="8" r="6" fill="#FBBF24"/>
+      <circle cx="8" cy="8" r="4" fill="#FEF08A"/>
+    </g>
+
+    <!-- Pipe -->
+    <g transform="translate(68, 0)">
+      <rect x="0" y="0" width="16" height="6" fill="#22C55E"/>
+      <rect x="2" y="6" width="12" height="10" fill="#15803D"/>
+      <rect x="4" y="0" width="3" height="16" fill="#86EFAC"/>
+    </g>
+  </g>
+  <text x="20" y="195" fill="#E2E8F0" font-family="monospace" font-size="11">BLOCKS, COIN &amp; GREEN PIPE</text>
+</svg>

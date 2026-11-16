@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Super Adventure World - Classic 2D Platformer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍄</text></svg>">
+</head>
+<body>
+
+  <!-- Game Main Viewport Container -->
+  <div class="game-container" id="game-container">
+
+    <!-- 16:9 Retro Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- In-Game HUD -->
+    <div class="hud-bar hidden" id="game-hud">
+      <div class="hud-item">
+        <span class="hud-label">MARIO</span>
+        <span class="hud-value" id="hud-score">000000</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">COINS</span>
+        <div class="coin-container">
+          <span class="hud-coin-icon"></span>
+          <span class="hud-value" id="hud-coins">x00</span>
+        </div>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">WORLD</span>
+        <span class="hud-value" id="hud-world">1-1</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">TIME</span>
+        <span class="hud-value" id="hud-time">300</span>
+      </div>
+      <div class="hud-item">
+        <span class="hud-label">LIVES</span>
+        <span class="hud-value" id="hud-lives">x3</span>
+      </div>
+      <div class="hud-actions">
+        <button class="hud-btn" id="btn-mute" title="Toggle Sound">🔊</button>
+        <button class="hud-btn" id="btn-hud-pause" title="Pause Game">⏸</button>
+      </div>
+    </div>
+
+    <!-- Title Screen Overlay -->
+    <div class="overlay" id="title-screen">
+      <div class="pixel-box">
+        <div class="title-logo-container">
+          <div class="title-badge">RETRO 8-BIT EDITION</div>
+          <h1 class="game-title">SUPER ADVENTURE<br>WORLD</h1>
+          <p class="game-subtitle">A Classic 2D Platformer Journey</p>
+        </div>
+
+        <div class="menu-buttons">
+          <button class="btn-arcade" id="btn-start-game">▶ START GAME</button>
+          <button class="btn-arcade btn-secondary" id="btn-select-level">🗺 SELECT LEVEL</button>
+          <button class="btn-arcade btn-green" id="btn-how-to-play">❓ HOW TO PLAY</button>
+        </div>
+
+        <div class="high-score-bar">
+          🏆 TOP SCORE: <span id="high-score-display">000000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause Overlay -->
+    <div class="overlay hidden" id="pause-overlay">
+      <div class="pixel-box">
+        <h2 class="game-title" style="font-size: 20px;">GAME PAUSED</h2>
+        <div class="menu-buttons">
+          <button class="btn-arcade" id="btn-resume">RESUME</button>
+          <button class="btn-arcade btn-secondary" id="btn-restart">RESTART LEVEL</button>
+          <button class="btn-arcade btn-green" id="btn-quit">QUIT TO TITLE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level Complete Modal -->
+    <div class="overlay hidden" id="level-complete-modal">
+      <div class="pixel-box">
+        <h2 class="game-title" id="lc-title" style="font-size: 18px; color: #10B981;">LEVEL COMPLETE!</h2>
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+          <div class="stat-row">
+            <span>FLAGPOLE BONUS</span>
+            <span class="stat-value" id="lc-flag-bonus">+1000</span>
+          </div>
+          <div class="stat-row">
+            <span>TIME BONUS</span>
+            <span class="stat-value" id="lc-time-bonus">+4200</span>
+          </div>
+          <div class="stat-row" style="border-bottom: none; font-size: 13px; color: #FBBF24;">
+            <span id="lc-total-score">TOTAL: 005200</span>
+          </div>
+        </div>
+        <div class="menu-buttons" style="margin-top: 10px;">
+          <button class="btn-arcade btn-green" id="btn-next-level">NEXT LEVEL ▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Game Over Modal -->
+    <div class="overlay hidden" id="game-over-modal">
+      <div class="pixel-box">
+        <h2 class="game-title" style="font-size: 22px; color: #EF4444;">GAME OVER</h2>
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+          <div class="stat-row">
+            <span id="go-level-reached">Level: 1-1</span>
+          </div>
+          <div class="stat-row">
+            <span id="go-final-score">Final Score: 000000</span>
+          </div>
+        </div>
+        <div class="menu-buttons" style="margin-top: 10px;">
+          <button class="btn-arcade" id="btn-try-again">TRY AGAIN ↺</button>
+          <button class="btn-arcade btn-secondary" id="btn-game-over-title">TITLE MENU</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grand Victory Modal -->
+    <div class="overlay hidden" id="victory-modal">
+      <div class="pixel-box">
+        <div class="title-badge" style="background: #10B981;">KINGDOM RESTORED</div>
+        <h2 class="game-title" style="font-size: 20px; color: #F59E0B;">CONGRATULATIONS!</h2>
+        <p style="font-size: 10px; color: #E2E8F0; line-height: 1.6;">
+          You navigated the grasslands, crossed the mushroom canopy, and conquered the dark underground!
+        </p>
+        <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+          <div class="stat-row">
+            <span id="vic-final-score">Final Score: 000000</span>
+          </div>
+          <div class="stat-row">
+            <span id="vic-coins">Coins Collected: 0</span>
+          </div>
+        </div>
+        <div class="menu-buttons" style="margin-top: 10px;">
+          <button class="btn-arcade" id="btn-play-again">PLAY AGAIN ↺</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level Select Modal -->
+    <div class="overlay hidden" id="level-select-modal">
+      <div class="pixel-box" style="max-width: 600px;">
+        <h2 class="game-title" style="font-size: 16px;">SELECT ADVENTURE</h2>
+        <div class="level-cards" id="level-cards-container">
+          <!-- Populated dynamically by UI manager -->
+        </div>
+        <button class="btn-arcade btn-secondary" id="btn-close-select" style="padding: 8px 16px; font-size: 11px;">CLOSE</button>
+      </div>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div class="overlay hidden" id="how-to-play-modal">
+      <div class="pixel-box" style="max-width: 620px;">
+        <h2 class="game-title" style="font-size: 16px;">HOW TO PLAY</h2>
+        <div class="controls-grid">
+          <div class="control-item">
+            <span class="key-tag">A / ◀ Left</span> : Move Left
+          </div>
+          <div class="control-item">
+            <span class="key-tag">D / ▶ Right</span> : Move Right
+          </div>
+          <div class="control-item">
+            <span class="key-tag">W / Space / ▲</span> : Jump (hold higher)
+          </div>
+          <div class="control-item">
+            <span class="key-tag">Shift / J</span> : Run / Sprint faster
+          </div>
+          <div class="control-item">
+            <span class="key-tag">P / Escape</span> : Pause Game
+          </div>
+          <div class="control-item">
+            <span class="key-tag">M</span> : Toggle Sound & Music
+          </div>
+        </div>
+        <div style="font-size: 9px; line-height: 1.6; color: #CBD5E1; text-align: left; width: 100%;">
+          • <strong>Question Blocks (?)</strong>: Jump underneath to pop coins and secrets.<br>
+          • <strong>Enemies</strong>: Stomp walking mushrooms and turtles from above! Bouncing off gives upward lift.<br>
+          • <strong>Turtle Shells</strong>: Stomp a turtle once to make it retract, then run into it or kick it to send it sliding into enemies!<br>
+          • <strong>Checkpoints</strong>: Touch the mid-level green post to set a respawn point.
+        </div>
+        <button class="btn-arcade" id="btn-close-how" style="padding: 8px 16px; font-size: 11px; margin-top: 10px;">GOT IT!</button>
+      </div>
+    </div>
+
+    <!-- Mobile Touch Virtual Controls -->
+    <div class="touch-controls" id="touch-controls">
+      <div class="touch-group">
+        <button class="touch-btn" id="touch-left">◀</button>
+        <button class="touch-btn" id="touch-right">▶</button>
+      </div>
+      <div class="touch-group">
+        <button class="touch-btn" id="touch-pause" style="width: 44px; height: 44px; font-size: 14px;">⏸</button>
+        <button class="touch-btn action-b" id="touch-run">RUN</button>
+        <button class="touch-btn action-a" id="touch-jump">JUMP</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Instructions Footer -->
+  <div class="game-footer">
+    <p>🎮 <span>Desktop:</span> A/D or Arrows to Move | Space/W to Jump | Shift to Sprint | P to Pause</p>
+    <p>📱 <span>Mobile:</span> Use on-screen virtual buttons | 🔊 Pure 8-Bit Web Audio Engine</p>
+  </div>
+
+  <!-- Game Scripts in Dependency Order -->
+  <script src="js/audio.js"></script>
+  <script src="js/sprites.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/entities.js"></script>
+  <script src="js/levels.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="game.js"></script>
+
+</body>
+</html>
