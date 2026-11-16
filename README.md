@@ -1,5 +1,7 @@
 # 🎮 Super Adventure World - Classic 2D Platformer
 
+> **Live Playable Demo**: [https://omkarpawar0707.github.io/super-adventure-world/](https://omkarpawar0707.github.io/super-adventure-world/)
+
 A complete, polished, playable 2D platformer game inspired by classic Super Mario Bros, built purely with HTML5, CSS3, JavaScript, HTML Canvas, and the Web Audio API.
 
 Experience authentic retro platforming: responsive controls, momentum physics, question blocks with coins, stomping enemies, kicking turtle shells, moving platforms, checkpoints, chiptune music, and classic flagpole finishes across 3 handcrafted levels!
